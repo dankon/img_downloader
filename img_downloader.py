@@ -8,10 +8,10 @@ import sys
 import requests
 
 def img_downlader(file_loc, img_destiantion='downloaded_imgs/'):
-    """
+    """\
     To run downloader is necessary to provide file location (file_loc)
-    and optionally download image destination (img_destiantion, which
-    default value is downloaded_imgs/).
+    and optionally download image destination folder 
+    (img_destiantion, which default value is downloaded_imgs/).
     """
     #TODO: 20160315-01 fix problem with IOError
     with open(file_loc, 'r') as urls_file:
@@ -26,7 +26,7 @@ def img_downlader(file_loc, img_destiantion='downloaded_imgs/'):
                 output_file.write(requests.get(url_line,
                                                verify=False,
                                                stream=True).content)
-            print "image has been downloaded to %s\n" % img_location
+                print "Image has been downloaded to %s\n" % img_location
 
 
 if __name__:
