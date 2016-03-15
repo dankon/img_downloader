@@ -5,6 +5,7 @@ This is simple script for download all images by URLs in plaintext file.
 The script requires requests module for working.
 """
 import sys
+import os
 import requests
 
 
@@ -30,7 +31,6 @@ def img_downlader(file_loc, img_destiantion='downloaded_imgs/'):
     and optionally download image destination folder
     (img_destiantion, which default value is downloaded_imgs/).
     """
-    #TODO: 20160315-01 fix problem with IOError
     with open(file_loc, 'r') as urls_file:
         for url_address in urls_file.readlines():
             #TODO: 20160315-02 prepare checking if url_address is URL address
@@ -42,7 +42,9 @@ def img_downlader(file_loc, img_destiantion='downloaded_imgs/'):
 
 if __name__:
     print "Start program\n"
-    f_location = sys.argv[1] if len(sys.argv) > 1 else raw_input("""\
-    Please provide file name for URLs container:\n""")
+    file_text = "Please provide file name for URLs container:\n"
+    f_location = sys.argv[1] if len(sys.argv) > 1 else raw_input(file_text)
+    while not os.path.isfile(f_location):
+        f_location = raw_input("ERROR: File doesn't exist.\n" + file_text)
     img_downlader(f_location)
     print "Stop program"
