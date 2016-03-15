@@ -24,13 +24,13 @@ def download_image_by_url(url_address, img_location):
             output_file.write(req_img.content)
             print "Image has been downloaded to %s\n" % img_location
     else:
-        print "ERROR: Page not found - image can not be download\n"    
-    
+        print "ERROR: Page not found - image can not be download\n"
+
 
 def img_downlader(file_loc, img_destiantion='downloaded_imgs/'):
     """\
     Downloader grab all images from urls contained by plaintext file.
-    
+
     To run downloader is necessary to provide file location (file_loc)
     and optionally download image destination folder
     (img_destiantion, which default value is downloaded_imgs/).
