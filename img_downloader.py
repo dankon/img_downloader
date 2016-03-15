@@ -6,7 +6,11 @@ The script requires requests module for working.
 """
 import sys
 import os
+import re
 import requests
+
+URL_IMG_PATTERN = (r'^(http|ftp)s?://[a-zA-Z0-9-.:_/]+'
+                   r'.(rgb|gif|pbm|pgm|ppm|tiff|rast|xbm|jpeg|jpg|bmp|png)$')
 
 
 def download_image_by_url(url_address, img_location):
@@ -33,11 +37,13 @@ def img_downlader(file_loc, img_destiantion='downloaded_imgs/'):
     """
     with open(file_loc, 'r') as urls_file:
         for url_address in urls_file.readlines():
-            #TODO: 20160315-02 prepare checking if url_address is URL address
             url_address = url_address.strip()
-            print "Start downloading image from %s" % url_address
-            img_location = img_destiantion + url_address.split('/')[-1]
-            download_image_by_url(url_address, img_location)
+            if re.match(URL_IMG_PATTERN, url_address):
+                print "Start downloading image from %s" % url_address
+                img_location = img_destiantion + url_address.split('/')[-1]
+                download_image_by_url(url_address, img_location)
+            else:
+                print "ERROR: Uncorrect url address (%s)\n" % url_address
 
 
 if __name__:
