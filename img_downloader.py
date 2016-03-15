@@ -3,6 +3,7 @@
 """
 This is simple script for download all images by URLs in plaintext file.
 """
+import sys
 
 def img_downlader(file_loc, img_destiantion='/downloaded_imgs/'):
     """
@@ -13,12 +14,13 @@ def img_downlader(file_loc, img_destiantion='/downloaded_imgs/'):
     #TODO: 20160315-01 fix problem with IOError
     with open(file_loc, 'r') as urls_file:
         for url_line in urls_file.readlines():
-			#TODO: 20160315-02 prepare checking if url_line is URL address
-            print url_line
-
+            #TODO: 20160315-02 prepare checking if url_line is URL address
+            url_line = url_line.strip()
+            print "downloading image from %s \n" % url_line
 
 if __name__:
     print "Start program"
-    f_location = raw_input("Please provide file name for URLs container:\n")
+    f_location = sys.argv[1] if len(sys.argv) > 1 else raw_input("""\
+Please provide file name for URLs container:\n""")
     img_downlader(f_location)
     print "Stop program"
