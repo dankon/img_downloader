@@ -5,7 +5,6 @@ This is simple script for download all images by URLs in plaintext file.
 The script requires requests module for working.
 """
 import sys
-#TODO: 20160315-05 add dependencies
 import requests
 
 def img_downlader(file_loc, img_destiantion='downloaded_imgs/'):
